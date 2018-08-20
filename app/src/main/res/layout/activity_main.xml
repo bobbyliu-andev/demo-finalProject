@@ -2,12 +2,11 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimaryDark"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/mFragContainer"
+        android:id="@+id/mContent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -16,6 +15,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <FrameLayout
+            android:id="@+id/mFragContainer"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp" >
+
+        </FrameLayout>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimaryDark"
+            app:itemIconTint="@color/bot_item_color"
+            app:itemTextColor="@color/bot_item_color"
+            app:itemBackground="@color/colorPrimaryDark"
+            app:menu="@menu/navigation" />
 
     </LinearLayout>
 

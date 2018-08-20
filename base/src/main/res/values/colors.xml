@@ -16,5 +16,6 @@
     <color name="colorBlack">#212121</color>
     <color name="colorAccent">#248499</color>
     <color name="colorWhiteTrans">#30ffffff</color>
+    <color name="colorBlackTrans">#30000000</color>
     <color name="colorRed">#e62a1d</color>
 </resources>

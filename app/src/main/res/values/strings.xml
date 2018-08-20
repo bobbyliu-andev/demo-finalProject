@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Orda</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_nav_test">NavTestActivity</string>
+    <string name="title_shipping">Shipping</string>
+    <string name="title_requests">Requests</string>
+    <string name="title_account">Account</string>
 </resources>
