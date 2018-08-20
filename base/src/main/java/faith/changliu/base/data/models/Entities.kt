@@ -20,7 +20,7 @@ class Agent
 class Traveler
 
 @Entity(tableName = "orders")
-class Order(@PrimaryKey val id: String, // barcode
+data class Order(@PrimaryKey val id: String, // barcode
 			var title: String,
 			var weight: Double,
 			var price: Double,

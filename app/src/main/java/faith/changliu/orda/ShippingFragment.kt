@@ -1,18 +1,18 @@
 package faith.changliu.orda
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_requests.view.*
+import kotlinx.android.synthetic.main.fragment_shipping.*
 import kotlinx.android.synthetic.main.fragment_shipping.view.*
 
-
-class ShippingFragment : Fragment() {
-
-
+class ShippingFragment : Fragment(), View.OnClickListener {
+	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		arguments?.let {
@@ -32,6 +32,17 @@ class ShippingFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
+		mFabAddOrder.setOnClickListener(this)
+	}
+	
+	override fun onClick(v: View) {
+		when (v.id) {
+			R.id.mFabAddOrder -> {
+				val intent = Intent(context, AddOrderActivity::class.java)
+				intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+				startActivity(intent)
+			}
+		}
 	}
 }
 

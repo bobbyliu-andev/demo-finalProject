@@ -9,6 +9,15 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="ProgressBar" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
@@ -19,6 +28,17 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="Et">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">10</item>
+        <item name="android:maxLength">200</item>
+        <item name="android:layout_margin">@dimen/margin_small</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:background">@drawable/bg_et</item>
+    </style>
 
-
+    <style name="Et.NotFirst">
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
 </resources>

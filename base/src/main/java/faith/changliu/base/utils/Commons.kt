@@ -10,3 +10,13 @@ fun isConnected(): Boolean {
 	val activeNetwork = cm.activeNetworkInfo ?: return false
 	return activeNetwork.isConnected
 }
+
+fun Boolean.yes(yes: () -> Unit): Boolean {
+	if (this) yes()
+	return this
+}
+
+fun Boolean.no(no: () -> Unit): Boolean {
+	if (this.not()) no()
+	return this
+}

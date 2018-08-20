@@ -8,6 +8,8 @@ import android.view.WindowManager
 import faith.changliu.base.BaseActivity
 import faith.changliu.base.data.models.Order
 import faith.changliu.base.data.viewmodels.MainViewModel
+import faith.changliu.base.utils.no
+import faith.changliu.base.utils.yes
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.delay
@@ -58,9 +60,9 @@ class MainActivity : BaseActivity() {
 
 	override fun onResume() {
 		super.onResume()
-		mViewModel.orders.observe(this, object : Observer<List<Order>> {
-			override fun onChanged(t: List<Order>?) {
-				toast("on change reached")
+		mViewModel.orders.observe(this, Observer<List<Order>> {
+			it?.isEmpty()?.no {
+				toast(it?.get(0).toString())
 			}
 		})
 	}
@@ -77,6 +79,6 @@ class MainActivity : BaseActivity() {
 				.replace(R.id.mFragContainer, newFragment)
 				.commit()
 	}
-
+	
 }
 
