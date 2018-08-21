@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import faith.changliu.base.data.models.Order
 import faith.changliu.base.data.viewmodels.MainViewModel
+import faith.changliu.base.utils.no
 import kotlinx.android.synthetic.main.fragment_shipping.*
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
@@ -49,10 +50,12 @@ class ShippingFragment : Fragment(), View.OnClickListener {
 	override fun onResume() {
 		super.onResume()
 		mViewModel.orders.observe(this, Observer<List<Order>> { orders ->
-			orders?.let {
-				val order = orders?.get(0).toString()
-				println(order)
+			orders?.isEmpty()?.no {
+
+				// todo: debug
+				val order = orders[0].toString()
 				toast(order)
+
 				mOrderAdapter.orders.apply {
 					clear()
 					addAll(orders)

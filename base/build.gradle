@@ -36,8 +36,8 @@ dependencies {
     // lottie
     api "com.airbnb.android:lottie:2.5.5"
     // firebase
-    api 'com.google.firebase:firebase-auth:16.0.2'
-    api 'com.google.firebase:firebase-firestore:17.0.4'
+    api 'com.google.firebase:firebase-auth:16.0.3'
+    api 'com.google.firebase:firebase-firestore:17.1.0'
     // dagger 2
     api "com.google.dagger:dagger:2.16"
     kapt "com.google.dagger:dagger-compiler:2.16"
