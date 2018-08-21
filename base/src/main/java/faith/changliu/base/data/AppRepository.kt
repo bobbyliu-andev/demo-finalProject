@@ -3,9 +3,11 @@ package faith.changliu.base.data
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Room
 import faith.changliu.base.AppContext
+import faith.changliu.base.data.firebase.FireDB
 import faith.changliu.base.data.models.Order
 import faith.changliu.base.data.room.RoomDB
 import faith.changliu.base.utils.isConnected
+import faith.changliu.base.widgets.LoadingDialog
 import java.util.concurrent.Executors
 
 object AppRepository {
@@ -14,9 +16,10 @@ object AppRepository {
 
 	private val executor = Executors.newSingleThreadExecutor()
 
-	fun insertOrder(order: Order) {
+	suspend fun insertOrder(order: Order) {
 		if (isConnected()) {
 			// todo: upload
+			FireDB.saveOrder(order)
 			// todo: add to room
 			executor.execute { roomDB.orderDao.insertOrder(order) }
 		} else {

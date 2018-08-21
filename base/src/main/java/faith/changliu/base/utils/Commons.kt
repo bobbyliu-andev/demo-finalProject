@@ -4,6 +4,11 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.widget.EditText
 import faith.changliu.base.AppContext
+import faith.changliu.base.BaseActivity
+import faith.changliu.base.widgets.LoadingDialog
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.launch
+import org.jetbrains.anko.toast
 
 private val cm = AppContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
@@ -58,4 +63,20 @@ fun EditText.getEmail(): String? {
 fun String.isEmail(): Boolean {
 	val p = "^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w+)+)\$".toRegex()
 	return matches(p)
+}
+
+// Coroutine
+fun BaseActivity.tryBlock(block: suspend () -> Unit) {
+	launch(UI) {
+		try {
+			mLoading.startLoading()
+			block()
+		} catch (ex: NullPointerException) {
+			ex.printStackTrace()
+		} catch (ex: Exception) {
+			ex.printStackTrace()
+		} finally {
+			mLoading.stopLoading()
+		}
+	}
 }
