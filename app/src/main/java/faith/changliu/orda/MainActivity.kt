@@ -22,7 +22,6 @@ class MainActivity : BaseActivity() {
 		when (item.itemId) {
 			navigation.selectedItemId -> false
 			R.id.navigation_shipping -> {
-				mLoading.startLoading()
 				switchFragment(mShippingFragment)
 				return@OnNavigationItemSelectedListener true
 			}
@@ -60,11 +59,6 @@ class MainActivity : BaseActivity() {
 
 	override fun onResume() {
 		super.onResume()
-		mViewModel.orders.observe(this, Observer<List<Order>> {
-			it?.isEmpty()?.no {
-				toast(it?.get(0).toString())
-			}
-		})
 	}
 
 	private fun initViews() {

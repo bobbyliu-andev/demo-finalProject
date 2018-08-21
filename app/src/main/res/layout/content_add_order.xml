@@ -61,13 +61,13 @@
             app:layout_constraintTop_toBottomOf="@+id/mEtPrice" />
 
         <EditText
-            android:id="@+id/mEtMemo"
+            android:id="@+id/mEtDescription"
             style="@style/Et.NotFirst"
             android:hint="Memo"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mEtPrice" />
+            app:layout_constraintTop_toBottomOf="@+id/mEtWeight" />
 
         <Button
             android:id="@+id/mBtnSubmit"
@@ -80,7 +80,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mEtMemo" />
+            app:layout_constraintTop_toBottomOf="@+id/mEtDescription" />
 
     </android.support.constraint.ConstraintLayout>
 
