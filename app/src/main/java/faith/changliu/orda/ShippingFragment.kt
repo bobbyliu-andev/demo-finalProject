@@ -63,13 +63,9 @@ class ShippingFragment : BaseFragment(), View.OnClickListener {
 	override fun onResume() {
 		super.onResume()
 		mViewModel.orders.observe(this, Observer<List<Order>> { orders ->
-			orders?.isEmpty()?.no {
-
-				// todo: debug
-				val order = orders[0].toString()
-				toast(order)
-
+			orders?.let { orders ->
 				mOrderAdapter.orders.apply {
+					// todo: opt delete/insert
 					clear()
 					addAll(orders)
 				}
