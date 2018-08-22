@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_requests.view.*
 
 
-class RequestsFragment : Fragment() {
-	
+class AccountFragment : Fragment() {
 	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -31,6 +30,6 @@ class RequestsFragment : Fragment() {
 	
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		view.mTv01.text = "Requests"
+		view.mTv01.text = "Account"
 	}
 }

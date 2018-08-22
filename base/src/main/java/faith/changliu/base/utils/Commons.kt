@@ -2,9 +2,12 @@ package faith.changliu.base.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.support.v4.app.Fragment
 import android.widget.EditText
 import faith.changliu.base.AppContext
 import faith.changliu.base.BaseActivity
+import faith.changliu.base.BaseFragment
+import faith.changliu.base.R
 import faith.changliu.base.widgets.LoadingDialog
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
@@ -78,5 +81,28 @@ fun BaseActivity.tryBlock(block: suspend () -> Unit) {
 		} finally {
 			mLoading.stopLoading()
 		}
+	}
+}
+
+fun BaseFragment.tryBlock(block: suspend () -> Unit) {
+	launch(UI) {
+		try {
+			mLoading?.startLoading()
+			block()
+		} catch (ex: NullPointerException) {
+			ex.printStackTrace()
+		} catch (ex: Exception) {
+			ex.printStackTrace()
+		} finally {
+			mLoading?.stopLoading()
+		}
+	}
+}
+
+
+// Debug and Prompts
+fun toastExt(msgResId: Int = R.string.no_internet) {
+	with(AppContext) {
+		toast(getString(msgResId))
 	}
 }

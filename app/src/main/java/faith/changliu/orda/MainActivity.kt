@@ -1,20 +1,19 @@
 package faith.changliu.orda
 
-import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.WindowManager
 import faith.changliu.base.BaseActivity
-import faith.changliu.base.data.models.Order
+import faith.changliu.base.data.AppRepository
+import faith.changliu.base.data.firebase.FireAuth
 import faith.changliu.base.data.viewmodels.MainViewModel
 import faith.changliu.base.utils.no
+import faith.changliu.base.utils.tryBlock
 import faith.changliu.base.utils.yes
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.delay
-import kotlinx.coroutines.experimental.launch
-import org.jetbrains.anko.toast
+import org.jetbrains.anko.clearTop
 
 class MainActivity : BaseActivity() {
 
@@ -45,24 +44,24 @@ class MainActivity : BaseActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_main)
-
-		supportActionBar?.hide()
-		mLoading.startLoading()
-
-		launch(UI) {
-			delay(2000)
-			initViews()
-			mLoading.stopLoading()
+		
+		FireAuth.isLoggedIn().no {
+			val intent = Intent(this, LoginActivity::class.java).clearTop()
+			startActivity(intent)
+			finish()
+		}.yes {
+			window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) // show status
+			setContentView(R.layout.activity_main)
+			supportActionBar?.hide()
+			
+			tryBlock {
+				AppRepository.syncOrders()
+				initViews()
+			}
 		}
 	}
 
-	override fun onResume() {
-		super.onResume()
-	}
-
 	private fun initViews() {
-		window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) // show status
 		supportActionBar?.show()
 		navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 		switchFragment(mShippingFragment)
@@ -73,6 +72,5 @@ class MainActivity : BaseActivity() {
 				.replace(R.id.mFragContainer, newFragment)
 				.commit()
 	}
-	
 }
 

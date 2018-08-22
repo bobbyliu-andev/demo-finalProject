@@ -9,14 +9,19 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import faith.changliu.base.BaseFragment
+import faith.changliu.base.data.AppRepository
 import faith.changliu.base.data.models.Order
 import faith.changliu.base.data.viewmodels.MainViewModel
 import faith.changliu.base.utils.no
+import faith.changliu.base.utils.tryBlock
 import kotlinx.android.synthetic.main.fragment_shipping.*
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 
-class ShippingFragment : Fragment(), View.OnClickListener {
+class ShippingFragment : BaseFragment(), View.OnClickListener {
 	
 	private val mViewModel by lazy { MainViewModel() }
 	private lateinit var mOrderAdapter: OrdersAdapter
@@ -44,7 +49,15 @@ class ShippingFragment : Fragment(), View.OnClickListener {
 		
 		mRcvOrders.layoutManager = LinearLayoutManager(context)
 		// todo: implement onUpdate, onDelete
-		mOrderAdapter = OrdersAdapter(arrayListOf(), {toast(it.id)}, {toast(it.id)})
+		mOrderAdapter = OrdersAdapter(arrayListOf(), {toast(it.id)}, {
+			order ->
+			tryBlock {
+				async(CommonPool) {
+					AppRepository.deleteOrder(order.id)
+				}.await()
+				toast("Deleted")
+			}
+		})
 	}
 	
 	override fun onResume() {

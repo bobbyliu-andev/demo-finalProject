@@ -36,9 +36,32 @@
         <item name="android:layout_margin">@dimen/margin_small</item>
         <item name="android:padding">12dp</item>
         <item name="android:background">@drawable/bg_et</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="Et.WithIcon">
+        <item name="android:textSize">20sp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
     </style>
 
     <style name="Et.NotFirst">
         <item name="android:layout_marginTop">0dp</item>
     </style>
+
+    <style name="Btn">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_btn</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
