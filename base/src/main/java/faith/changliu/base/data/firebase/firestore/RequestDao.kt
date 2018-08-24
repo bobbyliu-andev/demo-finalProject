@@ -5,7 +5,7 @@ import faith.changliu.base.data.models.Request
 import faith.changliu.base.data.preferences.UserPref
 import kotlinx.coroutines.experimental.suspendCancellableCoroutine
 
-private const val REQUESTS = "Requests"
+private const val REQUESTS = "requests"
 
 suspend fun FirebaseFirestore.saveRequest(request: Request) = suspendCancellableCoroutine<Unit> { cont ->
 	collection(REQUESTS).document(request.id)

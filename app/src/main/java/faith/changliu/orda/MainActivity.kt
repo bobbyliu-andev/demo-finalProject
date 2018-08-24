@@ -54,7 +54,7 @@ class MainActivity : BaseActivity() {
 			setContentView(R.layout.activity_main)
 
 			this.tryBlock {
-				AppRepository.syncOrders()
+				AppRepository.syncAll()
 				initViews()
 			}
 		}

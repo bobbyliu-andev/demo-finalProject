@@ -2,13 +2,17 @@ package faith.changliu.orda
 
 import android.os.Bundle
 import faith.changliu.base.BaseActivity
+import faith.changliu.base.data.AppRepository
 import faith.changliu.base.data.models.Request
 import faith.changliu.base.data.models.RequestStatus
 import faith.changliu.base.data.preferences.UserPref
 import faith.changliu.base.utils.getDouble
 import faith.changliu.base.utils.getString
+import faith.changliu.base.utils.tryBlock
 import kotlinx.android.synthetic.main.activity_add_request.*
 import kotlinx.android.synthetic.main.content_add_request.*
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.toast
 import java.util.*
 
@@ -38,7 +42,12 @@ class AddRequestActivity : BaseActivity() {
 			val requestId = UUID.randomUUID().toString()
 
 			val newRequest = Request(requestId, title, RequestStatus.PENDING, "", deadline!!, country, city, address, weight, volume, compensation, description, Date(), userId)
-
+			tryBlock {
+				async(CommonPool) {
+					AppRepository.insertRequest(newRequest)
+				}.await()
+				finish()
+			}
 		}
 
 		mBtnPickDeadline.setOnClickListener {

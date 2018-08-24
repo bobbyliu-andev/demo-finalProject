@@ -20,6 +20,11 @@ object AppRepository {
 	private val roomDB = Room.databaseBuilder(AppContext, RoomDB::class.java, RoomDB.name).build()
 	private val executor = Executors.newSingleThreadExecutor()
 
+	suspend fun syncAll() {
+		syncOrders()
+		syncRequests()
+	}
+
 	// region { Orders }
 
 	suspend fun syncOrders() {

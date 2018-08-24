@@ -1,5 +1,6 @@
 package faith.changliu.orda
 
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -53,6 +54,19 @@ class RequestsFragment : BaseFragment(), View.OnClickListener {
 					AppRepository.deleteRequest(request.id)
 				}.await()
 				toast("Deleted")
+			}
+		})
+	}
+
+	override fun onResume() {
+		super.onResume()
+		mViewModel.requests.observe(this, Observer { requests ->
+			requests?.let { requests ->
+				mRequestAdapter.requests.apply {
+					clear()
+					addAll(requests)
+				}
+				mRcvRequests.adapter = mRequestAdapter
 			}
 		})
 	}
