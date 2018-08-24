@@ -11,7 +11,8 @@ import kotlinx.android.synthetic.main.cell_order.view.*
 class RequestsAdapter(
 		var requests: ArrayList<Request>,
 		private val onUpdate: (Request) -> Unit,
-		private val onDelete: (Request) -> Unit
+		private val onDelete: (Request) -> Unit,
+		private val onClick: (Request) -> Unit
 ) : RecyclerView.Adapter<RequestsAdapter.ViewHolder>() {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,6 +41,9 @@ class RequestsAdapter(
 				}
 				mBtnEdit.setOnClickListener {
 					onUpdate(request)
+				}
+				mCellView.setOnClickListener {
+					onClick(request)
 				}
 			}
 		}

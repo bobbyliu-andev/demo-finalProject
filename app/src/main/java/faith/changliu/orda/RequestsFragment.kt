@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import faith.changliu.base.BaseFragment
 import faith.changliu.base.data.AppRepository
 import faith.changliu.base.data.viewmodels.RequestViewModel
+import faith.changliu.base.utils.KEY_REQUEST
 import faith.changliu.base.utils.tryBlock
 import kotlinx.android.synthetic.main.fragment_requests.*
 import kotlinx.coroutines.experimental.CommonPool
@@ -55,6 +56,10 @@ class RequestsFragment : BaseFragment(), View.OnClickListener {
 				}.await()
 				toast("Deleted")
 			}
+		}, { request ->
+			// to display in activity
+			val intent = Intent(context, RequestDetailActivity::class.java).putExtra(KEY_REQUEST, request)
+			startActivity(intent)
 		})
 	}
 

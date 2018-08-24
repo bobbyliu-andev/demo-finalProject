@@ -50,5 +50,9 @@ object FireDB {
 		mFirestore.saveApplication(application)
 	}
 
+	suspend fun readAllApplicationsWithRequestId(requestId: String): ArrayList<RequestApplication> {
+		return mFirestore.readAllApplicationsWithRequestId(requestId)
+	}
+
 	// endregion
 }

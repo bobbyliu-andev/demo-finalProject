@@ -3,6 +3,7 @@ package faith.changliu.base.data.models
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
+import java.io.Serializable
 import java.util.*
 
 data class User(val id: String,
@@ -45,7 +46,7 @@ data class Request(@PrimaryKey val id: String,
 				   val description: String,
 				   val createdAt: Date,
 				   val createdBy: String,
-				   val agentEmail: String) {
+				   val agentEmail: String) : Serializable {
 	@Ignore
 	constructor() : this("", "", 0, "", Date(), "", "", "", 0.0, 0.0, 0.0, "", Date(), "", "")
 }
@@ -53,7 +54,9 @@ data class Request(@PrimaryKey val id: String,
 class RequestApplication(val id: String,
 						 val requestId: String,
 						 val appliedBy: String,
-						 val createdAt: Date)
+						 val createdAt: Date) {
+	constructor() : this("", "", "", Date())
+}
 
 class Rating(val id: String,
 			 var fromId: String,

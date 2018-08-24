@@ -43,6 +43,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="faith.changliu.orda.MainActivity" />
         </activity>
+        <activity android:name=".RequestDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>
