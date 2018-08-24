@@ -51,7 +51,8 @@
             android:id="@+id/imv_icon"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@drawable/box"
+            android:padding="@dimen/margin_small"
+            android:src="@drawable/ic_airplane"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

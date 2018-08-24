@@ -39,6 +39,14 @@
         <item name="android:textColor">@color/colorBlack</item>
     </style>
 
+    <style name="Et.Linear">
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Et.Linear.NotFirst">
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
     <style name="Et.WithIcon">
         <item name="android:textSize">20sp</item>
         <item name="android:drawablePadding">8dp</item>
@@ -52,9 +60,17 @@
 
     <style name="Btn">
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/bg_btn</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Btn.Login">
+        <item name="android:background">@drawable/bg_btn</item>
+    </style>
+
+    <style name="Btn.Submit">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/colorGrey5</item>
     </style>
 
     <style name="Title">

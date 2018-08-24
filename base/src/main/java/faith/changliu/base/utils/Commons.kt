@@ -2,7 +2,10 @@ package faith.changliu.base.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.view.View
 import android.widget.EditText
 import faith.changliu.base.AppContext
 import faith.changliu.base.BaseActivity
@@ -105,4 +108,11 @@ fun toastExt(msgResId: Int = R.string.no_internet) {
 	with(AppContext) {
 		toast(getString(msgResId))
 	}
+}
+
+fun snackDeleteConfirm(view: View, msg: String, onConfirmed: (View) -> Unit) {
+	Snackbar.make(view, msg, Snackbar.LENGTH_LONG)
+			.setAction("DELETE", onConfirmed)
+			.setActionTextColor(ContextCompat.getColor(view.context, R.color.colorRed))
+			.show()
 }

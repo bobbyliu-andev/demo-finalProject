@@ -61,7 +61,7 @@
 
             <Button
                 android:id="@+id/mBtnLogin"
-                style="@style/Btn"
+                style="@style/Btn.Login"
                 android:layout_width="180dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
@@ -92,7 +92,7 @@
     <Button
         android:id="@+id/mBtnRegister"
         android:layout_width="0dp"
-        style="@style/Btn"
+        style="@style/Btn.Login"
         android:text="Become an agent today"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"

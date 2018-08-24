@@ -100,4 +100,6 @@
     <string name="weight">Weight/lb</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_email">Email</string>
+    <string name="title_activity_add_request">Add Request</string>
+    <string name="submit">Submit</string>
 </resources>

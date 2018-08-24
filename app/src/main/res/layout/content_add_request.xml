@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".AddRequestActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/mEtRequestTitle"
+            style="@style/Et.Linear"
+            android:hint="Title"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/mBtnPickDeadline"
+            style="@style/Et.Linear"
+            android:textSize="20sp"
+            android:hint="Click to Pick a Deadline" />
+
+        <EditText
+            android:id="@+id/mEtRequestAddress"
+            style="@style/Et.Linear.NotFirst"
+            android:hint="Address"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/mEtRequestCity"
+            style="@style/Et.Linear.NotFirst"
+            android:hint="City"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/mEtRequestCountry"
+            style="@style/Et.Linear.NotFirst"
+            android:hint="Country"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/mEtRequestWeight"
+            style="@style/Et.Linear.NotFirst"
+            android:hint="Weight/lb"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/mEtRequestVolume"
+            style="@style/Et.Linear.NotFirst"
+            android:hint="Volume/cubic metre"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/mEtRequestCompensation"
+            style="@style/Et.Linear.NotFirst"
+            android:hint="Compensation/$"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/mEtRequestDescription"
+            android:layout_height="80dp"
+            android:gravity="top"
+            style="@style/Et.Linear.NotFirst"
+            android:hint="Description"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/mBtnSubmitRequest"
+            style="@style/Btn.Submit"
+            android:text="@string/submit" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

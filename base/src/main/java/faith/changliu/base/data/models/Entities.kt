@@ -30,7 +30,8 @@ data class Order(@PrimaryKey val id: String, // barcode
 	constructor() : this("", "", 0.0, 0.0, Date(), Date(), "", "")
 }
 
-class Request(val id: String,
+@Entity(tableName = "requests")
+data class Request(@PrimaryKey val id: String,
 			  val title: String,
 			  var status: Int,
 			  var assignedTo: String,
@@ -44,7 +45,10 @@ class Request(val id: String,
 			  val description: String,
 			  val createdAt: Date,
 			  val createdBy: String // agent id
-)
+) {
+	@Ignore
+	constructor() : this("", "", 0, "", Date(), "", "", "", 0.0, 0.0, 0.0, "", Date(), "")
+}
 
 class RequestApplication(val id: String,
 						 val requestId: String,

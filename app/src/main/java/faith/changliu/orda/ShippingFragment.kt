@@ -49,7 +49,7 @@ class ShippingFragment : BaseFragment(), View.OnClickListener {
 		
 		mRcvOrders.layoutManager = LinearLayoutManager(context)
 		// todo: implement onUpdate, onDelete
-		mOrderAdapter = OrdersAdapter(arrayListOf(), {toast(it.id)}, {
+		mOrderAdapter = OrdersAdapter(arrayListOf(), {toast("Feature to be added")}, {
 			order ->
 			tryBlock {
 				async(CommonPool) {

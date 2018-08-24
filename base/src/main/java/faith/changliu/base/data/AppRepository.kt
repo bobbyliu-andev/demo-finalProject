@@ -6,6 +6,7 @@ import faith.changliu.base.AppContext
 import faith.changliu.base.R
 import faith.changliu.base.data.firebase.firestore.FireDB
 import faith.changliu.base.data.models.Order
+import faith.changliu.base.data.models.Request
 import faith.changliu.base.data.room.RoomDB
 import faith.changliu.base.utils.isConnected
 import faith.changliu.base.utils.toastExt
@@ -18,7 +19,9 @@ object AppRepository {
 
 	private val roomDB = Room.databaseBuilder(AppContext, RoomDB::class.java, RoomDB.name).build()
 	private val executor = Executors.newSingleThreadExecutor()
-	
+
+	// region { Orders }
+
 	suspend fun syncOrders() {
 		if (isConnected().not()) {
 			AppContext.toast("No internet")
@@ -60,4 +63,52 @@ object AppRepository {
 			roomDB.orderDao.deleteOrderById(orderId)
 		}
 	}
+
+	// endregion
+
+	// region { Requests }
+
+	suspend fun syncRequests() {
+		if (isConnected().not()) {
+			AppContext.toast("No internet")
+			return
+		}
+
+		val requests = async(CommonPool) {
+			FireDB.readAllRequests()
+		}.await()
+
+		async(CommonPool) {
+			with(roomDB.requestDao) {
+				deleteAll()
+				insertAll(requests)
+			}
+		}.await()
+	}
+
+	suspend fun insertRequest(request: Request) {
+		if (isConnected()) {
+			// todo: upload
+			FireDB.saveRequest(request)
+			// todo: add to room
+			executor.execute { roomDB.requestDao.insertRequest(request) }
+		} else {
+			toastExt()
+		}
+	}
+
+	fun getAllRequests(): LiveData<List<Request>> {
+		return roomDB.requestDao.getAll()
+	}
+
+	suspend fun deleteRequest(requestId: String) {
+		if (!isConnected()) {
+			toastExt()
+		} else {
+			FireDB.deleteRequest(requestId)
+			roomDB.requestDao.deleteRequestById(requestId)
+		}
+	}
+
+	// endregion
 }

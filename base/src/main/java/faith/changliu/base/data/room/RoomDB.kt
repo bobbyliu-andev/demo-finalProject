@@ -4,9 +4,11 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import faith.changliu.base.data.models.Order
+import faith.changliu.base.data.models.Request
 import faith.changliu.base.data.room.dao.OrderDao
+import faith.changliu.base.data.room.dao.RequestDao
 
-@Database(entities = [Order::class], version = 1)
+@Database(entities = [Order::class, Request::class], version = 1)
 @TypeConverters(DateConverter::class)
 abstract class RoomDB : RoomDatabase() {
 
@@ -15,4 +17,5 @@ abstract class RoomDB : RoomDatabase() {
 	}
 
 	abstract val orderDao: OrderDao
+	abstract val requestDao: RequestDao
 }

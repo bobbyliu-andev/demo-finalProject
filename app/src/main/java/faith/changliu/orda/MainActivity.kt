@@ -52,9 +52,8 @@ class MainActivity : BaseActivity() {
 		}.yes {
 			window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) // show status
 			setContentView(R.layout.activity_main)
-			supportActionBar?.hide()
-			
-			tryBlock {
+
+			this.tryBlock {
 				AppRepository.syncOrders()
 				initViews()
 			}
@@ -62,7 +61,6 @@ class MainActivity : BaseActivity() {
 	}
 
 	private fun initViews() {
-		supportActionBar?.show()
 		navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 		switchFragment(mShippingFragment)
 	}
