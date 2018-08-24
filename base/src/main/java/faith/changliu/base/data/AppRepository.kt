@@ -3,7 +3,6 @@ package faith.changliu.base.data
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Room
 import faith.changliu.base.AppContext
-import faith.changliu.base.R
 import faith.changliu.base.data.firebase.firestore.FireDB
 import faith.changliu.base.data.models.Order
 import faith.changliu.base.data.models.Request
@@ -22,7 +21,7 @@ object AppRepository {
 
 	suspend fun syncAll() {
 		syncOrders()
-		syncRequests()
+		syncRequestsCreatedByCurrentUser()
 	}
 
 	// region { Orders }
@@ -73,7 +72,25 @@ object AppRepository {
 
 	// region { Requests }
 
-	suspend fun syncRequests() {
+	suspend fun syncRequestsCreatedByCurrentUser() {
+		if (isConnected().not()) {
+			AppContext.toast("No internet")
+			return
+		}
+
+		val requests = async(CommonPool) {
+			FireDB.readAllRequestsCreatedByCurrentUser()
+		}.await()
+
+		async(CommonPool) {
+			with(roomDB.requestDao) {
+				deleteAll()
+				insertAll(requests)
+			}
+		}.await()
+	}
+
+	suspend fun syncAllRequests() {
 		if (isConnected().not()) {
 			AppContext.toast("No internet")
 			return

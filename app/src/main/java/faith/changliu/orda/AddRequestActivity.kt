@@ -41,7 +41,10 @@ class AddRequestActivity : BaseActivity() {
 			val userId = UserPref.getId()
 			val requestId = UUID.randomUUID().toString()
 
-			val newRequest = Request(requestId, title, RequestStatus.PENDING, "", deadline!!, country, city, address, weight, volume, compensation, description, Date(), userId)
+			// todo: get user email
+			val email = "bobbyliu117@gmail.com"
+
+			val newRequest = Request(requestId, title, RequestStatus.PENDING, "", deadline!!, country, city, address, weight, volume, compensation, description, Date(), userId, email)
 			tryBlock {
 				async(CommonPool) {
 					AppRepository.insertRequest(newRequest)

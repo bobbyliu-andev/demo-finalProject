@@ -20,6 +20,21 @@ suspend fun FirebaseFirestore.saveRequest(request: Request) = suspendCancellable
 }
 
 suspend fun FirebaseFirestore.readAllRequests() = suspendCancellableCoroutine<ArrayList<Request>> { cont ->
+	val requests = arrayListOf<Request>()
+	collection(REQUESTS).get().addOnSuccessListener { snapshot ->
+		snapshot.forEach { doc ->
+			doc?.toObject(Request::class.java)?.let { request ->
+				requests.add(request)
+			}
+		}
+		cont.resume(requests)
+	}.addOnFailureListener { ex ->
+		ex.printStackTrace()
+		cont.resumeWithException(ex)
+	}.addOnCanceledListener { cont.cancel() }
+}
+
+suspend fun FirebaseFirestore.readAllRequestsCreatedByCurrentUser() = suspendCancellableCoroutine<ArrayList<Request>> { cont ->
 	val userId = UserPref.getId()
 	val requests = arrayListOf<Request>()
 	collection(REQUESTS).whereEqualTo("createdBy", userId).get().addOnSuccessListener { snapshot ->

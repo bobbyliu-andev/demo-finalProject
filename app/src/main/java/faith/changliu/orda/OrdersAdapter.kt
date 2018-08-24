@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import faith.changliu.base.data.models.Order
-import faith.changliu.base.utils.snackDeleteConfirm
+import faith.changliu.base.utils.snackConfirm
 import kotlinx.android.synthetic.main.cell_order.view.*
 
 class OrdersAdapter(
@@ -34,7 +34,7 @@ class OrdersAdapter(
 				mTvTitle.text = order.id
 				mTvMemo.text = order.description
 				mBtnDelete.setOnClickListener {
-					snackDeleteConfirm(it, "Confirm to delete") {
+					snackConfirm(it, "Confirm to delete") {
 						onDelete(order)
 					}
 				}

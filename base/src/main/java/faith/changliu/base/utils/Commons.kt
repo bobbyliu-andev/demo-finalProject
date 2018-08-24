@@ -110,9 +110,9 @@ fun toastExt(msgResId: Int = R.string.no_internet) {
 	}
 }
 
-fun snackDeleteConfirm(view: View, msg: String, onConfirmed: (View) -> Unit) {
+fun snackConfirm(view: View, msg: String, onConfirmed: (View) -> Unit) {
 	Snackbar.make(view, msg, Snackbar.LENGTH_LONG)
-			.setAction("DELETE", onConfirmed)
-			.setActionTextColor(ContextCompat.getColor(view.context, R.color.colorRed))
+			.setAction("CONFIRM", onConfirmed)
+			.setActionTextColor(ContextCompat.getColor(view.context, R.color.colorWhite))
 			.show()
 }

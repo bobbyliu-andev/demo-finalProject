@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
+    tools:context=".TravalerLoginActivity">
+
+    <TextView
+        android:id="@+id/mTvTitle"
+        style="@style/Title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Sign In"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/mImvBox"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="64dp"
+            android:padding="@dimen/margin_small"
+            android:src="@drawable/ic_airplane"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/mEtLoginEmail"
+            style="@style/Et.WithIcon"
+            android:layout_marginTop="32dp"
+            android:drawableStart="@drawable/ic_email"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mImvBox" />
+
+        <EditText
+            android:id="@+id/mEtPwd"
+            style="@style/Et.WithIcon"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_pwd"
+            android:hint="@string/prompt_password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mEtLoginEmail" />
+
+        <Button
+            android:id="@+id/mBtnLogin"
+            style="@style/Btn.Login"
+            android:layout_width="180dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mBtnResetPwd" />
+
+        <Button
+            android:id="@+id/mBtnRegister"
+            style="@style/Btn.Login"
+            android:layout_width="180dp"
+            android:text="Register"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mBtnLogin" />
+
+        <TextView
+            android:id="@+id/mBtnResetPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:text="Forget Password"
+            android:textColor="@color/colorBlack"
+            android:textSize="15dp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="@+id/mEtPwd"
+            app:layout_constraintTop_toBottomOf="@+id/mEtPwd" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

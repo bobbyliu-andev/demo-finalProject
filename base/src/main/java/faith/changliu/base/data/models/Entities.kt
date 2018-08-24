@@ -6,14 +6,14 @@ import android.arch.persistence.room.PrimaryKey
 import java.util.*
 
 data class User(val id: String,
-		   val email: String,
-		   val phone: String,
-		   val name: String,
-		   val zipcode: Int,
-		   val type: Int,
-		   val tokenId: Long,
-		   val createdAt: Date,
-		   val status: Int) {
+				val email: String,
+				val phone: String,
+				val name: String,
+				val zipcode: Int,
+				val type: Int,
+				val tokenId: Long,
+				val createdAt: Date,
+				val status: Int) {
 	constructor() : this("", "", "", "", 0, 0, 0, Date(), 0)
 }
 
@@ -32,22 +32,22 @@ data class Order(@PrimaryKey val id: String, // barcode
 
 @Entity(tableName = "requests")
 data class Request(@PrimaryKey val id: String,
-			  val title: String,
-			  var status: Int,
-			  var assignedTo: String,
-			  val deadline: Date,
-			  val country: String,
-			  val city: String,
-			  val address: String,
-			  val weight: Double,
-			  val volume: Double,
-			  val compensation: Double,
-			  val description: String,
-			  val createdAt: Date,
-			  val createdBy: String // agent id
-) {
+				   val title: String,
+				   var status: Int,
+				   var assignedTo: String,
+				   val deadline: Date,
+				   val country: String,
+				   val city: String,
+				   val address: String,
+				   val weight: Double,
+				   val volume: Double,
+				   val compensation: Double,
+				   val description: String,
+				   val createdAt: Date,
+				   val createdBy: String,
+				   val agentEmail: String) {
 	@Ignore
-	constructor() : this("", "", 0, "", Date(), "", "", "", 0.0, 0.0, 0.0, "", Date(), "")
+	constructor() : this("", "", 0, "", Date(), "", "", "", 0.0, 0.0, 0.0, "", Date(), "", "")
 }
 
 class RequestApplication(val id: String,
@@ -72,6 +72,7 @@ object UserStatus {
 object UserType {
 	const val AGENT = 0
 	const val TRAVELER = 1
+	const val BOTH = 2
 }
 
 object RequestStatus {

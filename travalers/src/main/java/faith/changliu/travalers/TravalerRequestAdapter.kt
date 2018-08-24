@@ -1,18 +1,18 @@
-package faith.changliu.orda
+package faith.changliu.travalers
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import faith.changliu.base.AppContext
 import faith.changliu.base.data.models.Request
-import faith.changliu.base.utils.snackConfirm
-import kotlinx.android.synthetic.main.cell_order.view.*
+import kotlinx.android.synthetic.main.cell_request.view.*
+import org.jetbrains.anko.email
 
-class RequestsAdapter(
+class TravalerRequestAdapter(
 		var requests: ArrayList<Request>,
-		private val onUpdate: (Request) -> Unit,
-		private val onDelete: (Request) -> Unit
-) : RecyclerView.Adapter<RequestsAdapter.ViewHolder>() {
+		private val onClick: (Request) -> Unit
+) : RecyclerView.Adapter<TravalerRequestAdapter.ViewHolder>() {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		val view = LayoutInflater.from(parent.context).inflate(R.layout.cell_request, parent, false)
@@ -33,13 +33,9 @@ class RequestsAdapter(
 			itemView.apply {
 				mTvTitle.text = request.title
 				mTvMemo.text = request.description
-				mBtnDelete.setOnClickListener {
-					snackConfirm(it, "Confirm to delete") {
-						onDelete(request)
-					}
-				}
-				mBtnEdit.setOnClickListener {
-					onUpdate(request)
+				setOnClickListener{ onClick(request) }
+				mBtnEmailAgent.setOnClickListener {
+					AppContext.email(request.agentEmail, "About Request: ${request.title}", "May I ask something about the request ${request.title}?\n")
 				}
 			}
 		}

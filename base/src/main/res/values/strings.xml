@@ -2,4 +2,6 @@
     <string name="app_name">base</string>
     <string name="welcome_to_orda">WELCOME TO ORDA</string>
     <string name="no_internet">No internet</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_email">Email</string>
 </resources>
