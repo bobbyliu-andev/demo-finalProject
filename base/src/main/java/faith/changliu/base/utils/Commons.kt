@@ -113,6 +113,6 @@ fun toastExt(msgResId: Int = R.string.no_internet) {
 fun snackConfirm(view: View, msg: String, onConfirmed: (View) -> Unit) {
 	Snackbar.make(view, msg, Snackbar.LENGTH_LONG)
 			.setAction("CONFIRM", onConfirmed)
-			.setActionTextColor(ContextCompat.getColor(view.context, R.color.colorWhite))
+			.setActionTextColor(ContextCompat.getColor(view.context, R.color.colorRed))
 			.show()
 }
